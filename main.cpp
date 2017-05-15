@@ -2,6 +2,7 @@
 #include <fstream>
 #include <map>
 #include <set>
+#include <string.h>
 #include "filesystem/kbu/filesystem.h"
 
 using namespace std;
