@@ -2,15 +2,11 @@
 #include <fstream>
 #include <map>
 #include <set>
-#ifdef WIN32
-#include <experimental/filesystem>
-#include <direct.h>
-#else
-#include <sys/stat.h>
-#endif
+#include <string.h>
+#include "filesystem/kbu/filesystem.h"
 
 using namespace std;
-namespace fs = std::experimental::filesystem;
+namespace fs = kbu::filesystem;
 
 const char CR = '\r';
 const char LF = '\n';
@@ -25,7 +21,6 @@ bool validate_args(int argc, char *argv[], string& inputDir, bool& all)
         return false;
     }
     inputDir = argv[1];
-    struct stat st = {};
     all = false;
     if (argc == 3)
     {
@@ -139,7 +134,7 @@ void iterate_directory(const string& inputDir, Statistics& stat, bool all)
                         stat.mixedEOLs++;
                         stat.mixedEOLsExts.insert(p.path().extension().string());
                         if (all)
-                            cout << "Mixed line endings: " << p.path() << endl;
+                            cout << "Mixed line endings: " << p.path().string() << endl;
                     }
                     else if (hasCRLFs)
                     {
