@@ -95,6 +95,12 @@ void iterate_directory(const string& inputDir, Statistics& stat, bool all)
                             i += 2;
                             continue;
                         }
+                        if (i == 0 && prevc == 0 && buff[0] == '\xFF' && buff[1] == '\xFE')
+                        {
+                            // UTF16 BOM found
+                            bin = true;
+                            break;
+                        }
                         if (isBOF)
                         {
                             if (buff[i] == SPACE)
