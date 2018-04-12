@@ -133,8 +133,8 @@ void iterate_directory(const string& inputDir, Statistics& stat, bool all)
                     stat.binaryfiles++;
                     stat.binaryExtensions.insert(p.path().extension().string());
                     if (all &&
-                        p.path().extension().string() == ".cpp" ||
-                        p.path().extension().string() == ".h")
+                        (p.path().extension().string() == ".cpp" ||
+                         p.path().extension().string() == ".h"))
                         cout << "Binary file: " << p.path().string() << endl;
                 }
                 else
