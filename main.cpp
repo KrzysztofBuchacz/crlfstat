@@ -110,10 +110,13 @@ void iterate_directory(const string& inputDir, Statistics& stat, bool all)
                             else
                                 isBOF = false;
                         }
-                        if (buff[i] < 9 || (buff[i] > 13 && buff[i] < 32) || buff[i] > 126)
+                        if (buff[i] >= 0)
                         {
-                            bin = true;
-                            break;
+                            if (buff[i] < 9 || (buff[i] > 13 && buff[i] < 32))
+                            {
+                                bin = true;
+                                break;
+                            }
                         }
                         if (buff[i] == LF)
                         {
